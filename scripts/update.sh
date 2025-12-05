@@ -5,7 +5,7 @@ INSTALL_DIR="$HOME/.slim-shell"
 echo ""
 echo "--------------------------------------"
 echo "      Slim Shell — Updating"
-echo "--------------------------------------"
+--------------------------------------
 echo ""
 
 if [ ! -d "$INSTALL_DIR" ]; then
@@ -15,14 +15,19 @@ fi
 
 cd "$INSTALL_DIR"
 
+echo "[*] Resetting local changes..."
+git reset --hard HEAD
+
 echo "[*] Pulling latest changes..."
 git pull --rebase
 
-echo "[*] Rebuilding..."
+echo "[*] Cleaning old build files..."
+make clean || true
+
+echo "[*] Rebuilding Slim Shell..."
 make
 
 OS="$(uname -s)"
-
 case "$OS" in
     Linux*|Darwin*)
         echo "[*] Installing updated binary..."
