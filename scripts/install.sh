@@ -95,7 +95,7 @@ install_binary_windows() {
 finish() {
     echo ""
     echo "--------------------------------------"
-    echo " Slim Shell installed successfully!"
+    echo "Slim Shell installed successfully!"
     echo ""
     echo "Run it with:"
     echo "    slim"

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
+#include <sys/types.h>
 
 #include "builtins.h"
 
@@ -34,7 +35,6 @@ int handle_builtin(char *argv[])
         printf("[*] Updating Slim Shell...\n");
 
         const char *home = getenv("HOME");
-
         if (!home)
         {
             fprintf(stderr, "update: HOME not set\n");
@@ -45,10 +45,26 @@ int handle_builtin(char *argv[])
         snprintf(updater, sizeof(updater),
                  "%s/.slim-shell/scripts/update.sh", home);
 
-        // Execute the script
-        execl("/bin/sh", "sh", updater, NULL);
+        pid_t pid = fork();
 
-        perror("update");
+        if (pid == 0)
+        {
+            // child: run updater
+            execl("/bin/sh", "sh", updater, NULL);
+            perror("update");
+            exit(1);
+        }
+
+        // parent: wait for update script
+        int status;
+        waitpid(pid, &status, 0);
+
+        printf("[*] Update complete. Reloading Slim Shell...\n");
+
+        // relaunch slim binary — THIS refreshes features immediately
+        execl("/usr/local/bin/slim", "slim", NULL);
+
+        perror("restart failed");
         return 1;
     }
 
