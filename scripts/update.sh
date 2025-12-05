@@ -5,7 +5,7 @@ INSTALL_DIR="$HOME/.slim-shell"
 echo ""
 echo "--------------------------------------"
 echo "      Slim Shell — Updating"
-echo "--------------------------------------"
+--------------------------------------
 echo ""
 
 if [ ! -d "$INSTALL_DIR" ]; then
@@ -14,6 +14,10 @@ if [ ! -d "$INSTALL_DIR" ]; then
 fi
 
 cd "$INSTALL_DIR"
+
+echo "[*] Resetting local changes..."
+git reset --hard HEAD
+git clean -fd
 
 echo "[*] Pulling latest changes..."
 git pull --rebase
