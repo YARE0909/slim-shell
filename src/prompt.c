@@ -39,7 +39,7 @@ char *build_prompt(void)
     // ---- NOW safe: left[] max size ≈ 350 + a few small parts ----
     char left[512];
     snprintf(left, sizeof(left),
-             "%sYou at %s rn hb",
+             "%sYou at %s rn",
              BLUE, colored_cwd);
 
     // ---- TIME ----
