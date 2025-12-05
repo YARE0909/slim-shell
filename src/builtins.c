@@ -74,6 +74,7 @@ int handle_builtin(char *argv[])
 
     if (strcmp(argv[0], "immaslimugng") == 0) {
         print_banner();
+        return 1;
     }
 
     return 0;
