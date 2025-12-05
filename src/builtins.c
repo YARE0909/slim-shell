@@ -6,6 +6,7 @@
 #include <sys/wait.h>
 
 #include "builtins.h"
+#include "prompt.h"
 
 int handle_builtin(char *argv[])
 {
@@ -69,6 +70,10 @@ int handle_builtin(char *argv[])
 
         perror("restart failed");
         return 1;
+    }
+
+    if (strcmp(argv[0], "immaslimugng") == 0) {
+        print_banner();
     }
 
     return 0;

@@ -4,8 +4,9 @@
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include <time.h>
-#include "prompt.h"
 #include "util.h"
+
+#include "prompt.h"
 
 char *build_prompt(void)
 {
