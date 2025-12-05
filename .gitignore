@@ -1,0 +1,14 @@
+# Build directory
+build/
+
+# Object files
+*.o
+
+# Binaries
+slim
+slim.exe
+
+# Editor junk
+*.swp
+*.tmp
+.DS_Store
