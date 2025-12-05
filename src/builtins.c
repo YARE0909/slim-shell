@@ -29,5 +29,28 @@ int handle_builtin(char *argv[])
         return 1;
     }
 
+    if (strcmp(argv[0], "update") == 0)
+    {
+        printf("[*] Updating Slim Shell...\n");
+
+        const char *home = getenv("HOME");
+
+        if (!home)
+        {
+            fprintf(stderr, "update: HOME not set\n");
+            return 1;
+        }
+
+        char updater[512];
+        snprintf(updater, sizeof(updater),
+                 "%s/.slim-shell/scripts/update.sh", home);
+
+        // Execute the script
+        execl("/bin/sh", "sh", updater, NULL);
+
+        perror("update");
+        return 1;
+    }
+
     return 0;
 }
