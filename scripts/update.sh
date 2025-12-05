@@ -5,7 +5,7 @@ INSTALL_DIR="$HOME/.slim-shell"
 echo ""
 echo "--------------------------------------"
 echo "      Slim Shell — Updating"
---------------------------------------
+echo "--------------------------------------"
 echo ""
 
 if [ ! -d "$INSTALL_DIR" ]; then
