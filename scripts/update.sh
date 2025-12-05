@@ -19,11 +19,14 @@ echo "[*] Resetting local changes..."
 git reset --hard HEAD
 git clean -fd
 
+echo "[*] Fetching latest..."
+git fetch --all
+
 echo "[*] Pulling latest changes..."
-git pull --rebase
+git reset --hard origin/main
 
 echo "[*] Rebuilding..."
-make
+make -B   # forces rebuild, even if Make thinks it's up to date
 
 echo ""
 echo "--------------------------------------"
