@@ -50,20 +50,22 @@ int handle_builtin(char *argv[])
 
         if (pid == 0)
         {
-            // child: run updater
             execl("/bin/sh", "sh", updater, NULL);
             perror("update");
             exit(1);
         }
 
-        // parent: wait for update script
         int status;
         waitpid(pid, &status, 0);
 
         printf("[*] Update complete. Reloading Slim Shell...\n");
 
-        // relaunch slim binary — THIS refreshes features immediately
-        execl("/usr/local/bin/slim", "slim", NULL);
+        // Restart from the UPDATED binary in install directory
+        char newbin[512];
+        snprintf(newbin, sizeof(newbin),
+                 "%s/.slim-shell/slim", home);
+
+        execl(newbin, "slim", NULL);
 
         perror("restart failed");
         return 1;
