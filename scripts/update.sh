@@ -38,6 +38,6 @@ esac
 
 echo ""
 echo "--------------------------------------"
-echo "   Slim Shell is now up to date! 🎉"
+echo "   Slim Shell is now up to date!"
 echo "--------------------------------------"
 echo ""
