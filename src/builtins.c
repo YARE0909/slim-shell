@@ -4,7 +4,9 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <time.h>
 
+#include "colors.h"
 #include "builtins.h"
 #include "prompt.h"
 
@@ -72,8 +74,27 @@ int handle_builtin(char *argv[])
         return 1;
     }
 
-    if (strcmp(argv[0], "immaslimugng") == 0) {
+    if (strcmp(argv[0], "immaslimugng") == 0)
+    {
         print_banner();
+        return 1;
+    }
+
+    if (strcmp(argv[0], "when") == 0)
+    {
+        time_t now = time(NULL);
+        struct tm *t = localtime(&now);
+
+        char datebuf[64];
+        char timebuf[32];
+
+        strftime(datebuf, sizeof(datebuf), "%Y-%m-%d", t);
+        strftime(timebuf, sizeof(timebuf), "%H:%M:%S", t);
+
+        printf("clock say %s%s%s rn on %s%s%s keep up hb\n",
+               PURPLE, datebuf, RESET,
+               CYAN, timebuf, RESET);
+
         return 1;
     }
 

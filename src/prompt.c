@@ -4,8 +4,9 @@
 #include <unistd.h>
 #include <sys/ioctl.h>
 #include <time.h>
-#include "util.h"
 
+#include "util.h"
+#include "colors.h"
 #include "prompt.h"
 
 char *build_prompt(void)
@@ -19,12 +20,6 @@ char *build_prompt(void)
     short_cwd[300] = '\0';
 
     char *username = getenv("USER");
-
-    // const char *BLUE   = "\033[38;2;120;170;255m";
-    const char *PURPLE = "\033[38;2;190;120;255m";
-    const char *CYAN   = "\033[38;2;120;255;230m";
-    const char *GREEN  = "\033[38;2;120;255;150m";
-    const char *RESET  = "\033[0m";
 
     static char prompt[2048];
 
@@ -47,11 +42,6 @@ char *build_prompt(void)
 
 void print_banner(void)
 {
-    const char *BLUE = "\033[38;2;120;170;255m";
-    const char *PURPLE = "\033[38;2;190;120;255m";
-    const char *CYAN = "\033[38;2;120;255;230m";
-    const char *RESET = "\033[0m";
-
     printf("\n");
 
     printf("%s  ____                        __                              \n", BLUE);
